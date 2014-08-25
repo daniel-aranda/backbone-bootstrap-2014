@@ -54,7 +54,7 @@ module.exports = function(grunt){
                 src: [
                     'javascript/plugins/**/*.js'
                 ],
-                dest: '<%= release_path %>js/plugins_<%= pkg.name %>_<%= pkg.version %>.js'
+                dest: '<%= release_path %>js/plugins.js'
             },
 
             html : {
@@ -122,12 +122,18 @@ module.exports = function(grunt){
 
             scss : {
                 files : ['css/**/*.scss'],
-                tasks: ['sass']
+                tasks: ['sass'],
+                options : {
+                    spawn : false
+                }
             },
 
             preprocess : {
                 files : ['index.template.html', 'package.json'],
-                tasks: ['preprocess']
+                tasks: ['preprocess'],
+                options : {
+                    spawn : false
+                }
             }
 
         },
