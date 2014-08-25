@@ -47,14 +47,14 @@ module.exports = function(grunt){
                     'javascript/app/core.js',
                     'javascript/app/**/*.js'
                 ],
-                dest: '<%= release_path %>js/modules/<%= pkg.name %>.js'
+                dest: '<%= release_path %>js/modules/<%= pkg.name %>_<%= pkg.version %>.js'
             },
 
             html : {
                 src: [
                     'html/**/*.html'
                 ],
-                dest: '<%= release_path %>templates/<%= pkg.name %>.html'
+                dest: '<%= release_path %>templates/<%= pkg.name %>_<%= pkg.version %>.html'
             }
 
         },
@@ -69,7 +69,7 @@ module.exports = function(grunt){
             module :{
 
                 files : {
-                    '<%= release_path %>css/<%= pkg.name %>.css' : 'source/css/**/*.scss'
+                    '<%= release_path %>css/<%= pkg.name %>__<%= pkg.version %>.css' : 'source/css/**/*.scss'
                 }
             }
 
