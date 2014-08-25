@@ -7,9 +7,18 @@
     </head>
 
     <body>
-
         <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
         <script src="js/modules/firebase-security-rules-ui.js"></script>
+
+        <script>
+
+            require(['domReady!', 'fsr-ui/App'], function (domReady, app) {
+
+                console.log('yeah',app);
+
+            });
+
+        </script>
     </body>
 
 </html>
