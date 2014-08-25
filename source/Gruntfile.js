@@ -66,11 +66,21 @@ module.exports = function(grunt){
         },
 
         sass : {
+
             module :{
 
                 files : {
                     '<%= release_path %>css/<%= pkg.name %>__<%= pkg.version %>.css' : 'source/css/**/*.scss'
                 }
+            }
+
+        },
+
+        preprocess : {
+
+            dev : {
+                src : 'index.template.html',
+                dest : '<%= release_path %>index.html'
             }
 
         },
@@ -93,6 +103,11 @@ module.exports = function(grunt){
             scss : {
                 files : ['css/**/*.scss'],
                 tasks: ['sass']
+            },
+
+            preprocess : {
+                files : ['index.template.html', 'package.json'],
+                tasks: ['preprocess']
             }
 
         },
@@ -129,6 +144,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-preprocess');
 
     grunt.registerTask('default', ['watch']);
 
