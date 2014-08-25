@@ -50,6 +50,13 @@ module.exports = function(grunt){
                 dest: '<%= release_path %>js/modules/<%= pkg.name %>_<%= pkg.version %>.js'
             },
 
+            plugins: {
+                src: [
+                    'javascript/plugins/**/*.js'
+                ],
+                dest: '<%= release_path %>js/plugins_<%= pkg.name %>_<%= pkg.version %>.js'
+            },
+
             html : {
                 src: [
                     'html/**/*.html'
@@ -90,7 +97,8 @@ module.exports = function(grunt){
             js_html : {
                 files: [
                     '<%= concat.js.src %>',
-                    '<%= concat.html.src %>,'
+                    '<%= concat.plugins.src %>',
+                    '<%= concat.html.src %>'
                 ],
 
                 options : {
@@ -98,6 +106,18 @@ module.exports = function(grunt){
                 },
 
                 tasks: ['jshint', 'concat']
+            },
+
+            plugins : {
+                files: [
+                    '<%= concat.plugins.src %>'
+                ],
+
+                options : {
+                    spawn : false
+                },
+
+                tasks: ['concat']
             },
 
             scss : {
