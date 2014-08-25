@@ -9,3 +9,4 @@ require.config({
     }
 
 });
+console.log('hola');
