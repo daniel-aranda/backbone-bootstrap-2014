@@ -44,15 +44,15 @@ module.exports = function(grunt){
 
             js: {
                 src: [
-                    'source/javascript/core.js',
-                    'source/javascript/**/*.js'
+                    'javascript/app/core.js',
+                    'javascript/app/**/*.js'
                 ],
                 dest: '<%= release_path %>js/modules/<%= pkg.name %>.js'
             },
 
             html : {
                 src: [
-                    'source/html/**/*.html'
+                    'html/**/*.html'
                 ],
                 dest: '<%= release_path %>templates/<%= pkg.name %>.html'
             }
@@ -61,7 +61,7 @@ module.exports = function(grunt){
 
         jshint : {
 
-            files: ['source/javascript/**/*.js']
+            files: ['javascript/app/**/*.js']
 
         },
 
@@ -91,7 +91,7 @@ module.exports = function(grunt){
             },
 
             scss : {
-                files : ['source/css/**/*.scss'],
+                files : ['css/**/*.scss'],
                 tasks: ['sass']
             }
 
