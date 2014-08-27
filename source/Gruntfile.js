@@ -77,7 +77,7 @@ module.exports = function(grunt){
             module :{
 
                 files : {
-                    '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css' : 'source/css/**/*.scss'
+                    '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css' : 'scss/**/*.scss'
                 }
             }
 
@@ -127,7 +127,7 @@ module.exports = function(grunt){
             },
 
             scss : {
-                files : ['css/**/*.scss'],
+                files : ['scss/**/*.scss'],
                 tasks: ['sass'],
                 options : {
                     spawn : false
