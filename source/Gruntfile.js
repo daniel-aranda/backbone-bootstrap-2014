@@ -77,13 +77,19 @@ module.exports = function(grunt){
             module :{
 
                 files : {
-                    '<%= release_path %>css/<%= pkg.name %>__<%= pkg.version %>.css' : 'source/css/**/*.scss'
+                    '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css' : 'source/css/**/*.scss'
                 }
             }
 
         },
 
         preprocess : {
+
+            options : {
+                context : {
+                    FILE_NAME : '<%= pkg.name %>_<%= pkg.version %>'
+                }
+            },
 
             dev : {
                 src : 'index.template.html',

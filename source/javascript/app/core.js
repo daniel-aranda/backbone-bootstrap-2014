@@ -1,3 +1,6 @@
+$d = {
+    project : 'your-project-name'
+};
 require.config({
 
     baseUrl: 'js/',

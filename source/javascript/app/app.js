@@ -1,7 +1,10 @@
 define(
-    'fsr-ui/App',
+    $d.project + '/App',
     [],
     function(){
-        return {};
+
+        var app;
+
+        return app;
     }
 );
