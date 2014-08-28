@@ -152,16 +152,12 @@ module.exports = function(grunt){
 
             options : {
                 specs : 'tests/**/*.js',
+                template: require('grunt-template-jasmine-requirejs'),
                 helpers : [
                     'tests/helpers/SpecHelper.js',
                     'tests/helpers/*.js'
                 ],
-                vendor : [
-                    'http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js',
-                    'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-                    'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore.js',
-                    'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone.js'
-                ],
+                vendor : [],
                 styles : [
                     '<%= release_path %>css/<%= pkg.name %>.css'
                 ]

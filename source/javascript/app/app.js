@@ -3,7 +3,9 @@ define(
     [],
     function(){
 
-        var app;
+        var app = {
+            name : 'hello'
+        };
 
         return app;
     }
