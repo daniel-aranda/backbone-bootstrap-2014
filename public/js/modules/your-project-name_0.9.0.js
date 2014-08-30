@@ -30,13 +30,54 @@ require.config({
 });
 define(
     $d.project + '/App',
-    [],
-    function(){
+    [$d.project + '/Router'],
+    function(Router){
 
-        var app = {
+        var App = {
             name : 'hello'
         };
 
-        return app;
+        return App;
+    }
+);
+define(
+    $d.project + '/Events',
+    [],
+    function(){
+
+        var Events = {
+            ROUTER_DISPLAY_VIEW : 'router_display_view'
+        };
+
+        return Events;
+    }
+);
+define(
+    $d.project + '/Router',
+    ['backbone', $d.project + '/Events'],
+    function(Backbone, Events){
+
+        var Router = Backbone.Router.extend({
+
+            routes : {
+                "dashboard"                                    : "dashboard",
+                "*path"                                        : "defaultRoute"
+            },
+
+            defaultRoute : function() {
+                this.navigate('dashboard', {trigger: true});
+            },
+
+            dashboard : function(){
+
+            },
+
+            display : function(view, options){
+                this.trigger(Events.ROUTER_DISPLAY_VIEW, view, options);
+            }
+
+        });
+
+        return Router;
     }
 );

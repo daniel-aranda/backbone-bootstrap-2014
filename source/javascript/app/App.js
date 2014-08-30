@@ -1,12 +1,12 @@
 define(
     $d.project + '/App',
-    [],
-    function(){
+    [$d.project + '/Router'],
+    function(Router){
 
-        var app = {
+        var App = {
             name : 'hello'
         };
 
-        return app;
+        return App;
     }
 );
