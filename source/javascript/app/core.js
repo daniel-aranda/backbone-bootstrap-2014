@@ -1,5 +1,6 @@
 $d = {
-    project : 'your-project-name'
+    project : 'your-project-name',
+    protocol : window.location.protocol
 };
 require.config({
 
@@ -19,11 +20,11 @@ require.config({
     },
 
     paths: {
-        jquery: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min',
-        underscore: 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
-        backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
-        domReady: 'http://cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady'
-        //TODO: add plugins
+        jquery: $d.protocol + '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min',
+        underscore: $d.protocol + '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
+        backbone: $d.protocol + '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
+        domReady: $d.protocol + '//cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady',
+        plugins: 'plugins.js'
     }
 
 });

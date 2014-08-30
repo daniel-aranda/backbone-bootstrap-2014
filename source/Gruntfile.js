@@ -153,11 +153,15 @@ module.exports = function(grunt){
             options : {
                 specs : 'tests/**/*.js',
                 template: require('grunt-template-jasmine-requirejs'),
+                templateOptions:{
+                    requireConfig: {
+                        baseUrl: '<%= release_path %>js/'
+                    }
+                },
                 helpers : [
                     'tests/helpers/SpecHelper.js',
                     'tests/helpers/*.js'
                 ],
-                vendor : [],
                 styles : [
                     '<%= release_path %>css/<%= pkg.name %>.css'
                 ]
