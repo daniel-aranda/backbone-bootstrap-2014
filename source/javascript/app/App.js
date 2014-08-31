@@ -1,6 +1,9 @@
 define(
     $d.project + '/App',
-    [$d.project + '/Router', $d.project + '/MainView'],
+    [
+        $d.project + '/Router',
+        $d.project + '/MainView'
+    ],
     function(Router, MainView){
 
         var router = new Router();

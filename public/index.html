@@ -17,6 +17,10 @@
 
 <script>
 
+    require.config({
+        baseUrl: 'js/'
+    });
+
     require(['domReady!', $d.project + '/App', 'plugins'], function (domReady, App) {
 
         App.initialize($('#application-place-holder'));

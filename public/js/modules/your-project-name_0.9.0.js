@@ -1,10 +1,8 @@
 $d = {
     project : 'your-project-name',
-    protocol : window.location.protocol
+    protocol : window.location.protocol === 'https:' ? 'https:' : 'http:'
 };
 require.config({
-
-    baseUrl: 'js/',
 
     shim : {
         backbone : {
@@ -30,7 +28,10 @@ require.config({
 });
 define(
     $d.project + '/App',
-    [$d.project + '/Router', $d.project + '/MainView'],
+    [
+        $d.project + '/Router',
+        $d.project + '/MainView'
+    ],
     function(Router, MainView){
 
         var router = new Router();
