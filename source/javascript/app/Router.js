@@ -15,7 +15,15 @@ define(
             },
 
             defaultRoute : function() {
-                this.navigate('dashboard', {trigger: true});
+                this.go('dashboard');
+            },
+
+            go : function(section, options){
+                options = options || {};
+                options = _.extend({
+                    trigger : true
+                }, options);
+                this.navigate(section, options);
             },
 
             dashboard : function(){
