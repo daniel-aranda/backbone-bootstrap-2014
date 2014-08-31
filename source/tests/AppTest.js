@@ -20,13 +20,18 @@ describe('App', function(){
 
     it('should start application', function(){
 
+        expect(App.core.router).toBeNull();
         App.initialize($('#application-place-holder'));
+        expect(App.core.router).not.toBeNull();
+        expect(App.core.router instanceof Backbone.Router).toBe(true);
 
     });
 
     it('should re start application', function(){
 
+        expect(App.core.router).toBeNull();
         App.initialize($('#application-place-holder'));
+        expect(App.core.router).not.toBeNull();
 
     });
 

@@ -34,10 +34,19 @@ define(
     ],
     function(Router, MainView){
 
-        var router;
         var $target;
-        var mainView;
         var _initialized = false;
+        var core = {
+            router : null,
+            mainView : null
+        };
+
+        var App = {
+            name : 'hello world',
+            initialize : initialize,
+            destroy : destroy,
+            core : core
+        };
 
         function initialize(_$target){
 
@@ -47,14 +56,14 @@ define(
 
             $target = _$target;
 
-            router = new Router();
-            mainView = new MainView({
-                router : router
+            core.router = new Router();
+            core.mainView = new MainView({
+                router : core.router
             });
 
             _initialized = true;
-            $target.html(mainView.el);
-            mainView.render();
+            $target.html(core.mainView.el);
+            core.mainView.render();
             Backbone.history.start();
         }
 
@@ -63,18 +72,12 @@ define(
             Backbone.history.stop();
             $target.empty();
 
-            router = null;
-            mainView = null;
+            core.router = null;
+            core.mainView = null;
             $target = null;
             _initialized = false;
 
         }
-
-        var App = {
-            name : 'hello world',
-            initialize : initialize,
-            destroy : destroy
-        };
 
         return App;
     }
