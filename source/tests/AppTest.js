@@ -14,10 +14,29 @@ describe('App', function(){
 
     });
 
-    it('should have a router ', function(){
+    afterEach(function(){
+        App.destroy();
+    });
+
+    it('should start application', function(){
 
         App.initialize($('#application-place-holder'));
-        //expect(App.router).toBeInstanceOf(Backbone.Router);
+
+    });
+
+    it('should re start application', function(){
+
+        App.initialize($('#application-place-holder'));
+
+    });
+
+    it('should throw exception to double start', function(){
+
+        App.initialize($('#application-place-holder'));
+
+        expect(function(){
+            App.initialize($('#application-place-holder'));
+        }).toThrow(new Error("Application had been already initialized"));
 
     });
 

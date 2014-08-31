@@ -34,17 +34,23 @@ define(
     ],
     function(Router, MainView){
 
-        var router = new Router();
-        var mainView = new MainView({
-            router : router
-        });
+        var router;
+        var $target;
+        var mainView;
         var _initialized = false;
 
-        function initialize($target){
+        function initialize(_$target){
 
             if( _initialized ){
                 throw new Error("Application had been already initialized");
             }
+
+            $target = _$target;
+
+            router = new Router();
+            mainView = new MainView({
+                router : router
+            });
 
             _initialized = true;
             $target.html(mainView.el);
@@ -52,10 +58,22 @@ define(
             Backbone.history.start();
         }
 
+        function destroy(){
+
+            Backbone.history.stop();
+            $target.empty();
+
+            router = null;
+            mainView = null;
+            $target = null;
+            _initialized = false;
+
+        }
+
         var App = {
             name : 'hello world',
-            router : router,
-            initialize : initialize
+            initialize : initialize,
+            destroy : destroy
         };
 
         return App;
