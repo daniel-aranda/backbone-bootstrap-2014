@@ -1,7 +1,11 @@
 define(
     $d.project + '/Router',
-    ['backbone', $d.project + '/Events'],
-    function(Backbone, Events){
+    [
+        'backbone',
+        $d.project + '/dashboard/Dashboard',
+        $d.project + '/Events'
+    ],
+    function(Backbone, Dashboard, Events){
 
         var Router = Backbone.Router.extend({
 
@@ -15,10 +19,12 @@ define(
             },
 
             dashboard : function(){
-
+                var view = new Dashboard();
+                this.display(view);
             },
 
             display : function(view, options){
+                options = options || {};
                 this.trigger(Events.ROUTER_DISPLAY_VIEW, view, options);
             }
 

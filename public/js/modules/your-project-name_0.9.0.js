@@ -30,11 +30,31 @@ require.config({
 });
 define(
     $d.project + '/App',
-    [$d.project + '/Router'],
-    function(Router){
+    [$d.project + '/Router', $d.project + '/MainView'],
+    function(Router, MainView){
+
+        var router = new Router();
+        var mainView = new MainView({
+            router : router
+        });
+        var _initialized = false;
+
+        function initialize($target){
+
+            if( _initialized ){
+                throw new Error("Application had been already initialized");
+            }
+
+            _initialized = true;
+            $target.html(mainView.el);
+            mainView.render();
+            Backbone.history.start();
+        }
 
         var App = {
-            name : 'hello'
+            name : 'hello world',
+            router : router,
+            initialize : initialize
         };
 
         return App;
@@ -53,9 +73,61 @@ define(
     }
 );
 define(
+    $d.project + '/MainView',
+    [
+        $d.project + '/base/AbstractView',
+        $d.project + '/Events'
+    ],
+    function(AbstractView, Events){
+
+        var MainView = AbstractView.extend({
+
+            router : null,
+            $section : null,
+
+            events : function(events){
+                var this_events = {};
+                return this._super(_.extend(this_events, events));
+            },
+
+            delegateEvents : function(){
+                this.stopListening();
+                this._super();
+                this.listenTo(this.router, Events.ROUTER_DISPLAY_VIEW, this.displaySection);
+            },
+
+            initialize : function(options){
+                this.$el.html('<div><div class="section"></div></div>');
+
+                if( !options.router ){
+                    throw new Error('router option is required');
+                }
+                this.router = options.router;
+
+            },
+
+            render : function(){
+                this.$section = this.$('.section');
+            },
+
+            displaySection : function(view){
+                this.$section.html(view.el);
+                view.render();
+            }
+
+        });
+
+        return MainView;
+    }
+);
+define(
     $d.project + '/Router',
-    ['backbone', $d.project + '/Events'],
-    function(Backbone, Events){
+    [
+        'backbone',
+        $d.project + '/dashboard/Dashboard',
+        $d.project + '/Events'
+    ],
+    function(Backbone, Dashboard, Events){
 
         var Router = Backbone.Router.extend({
 
@@ -69,15 +141,56 @@ define(
             },
 
             dashboard : function(){
-
+                var view = new Dashboard();
+                this.display(view);
             },
 
             display : function(view, options){
+                options = options || {};
                 this.trigger(Events.ROUTER_DISPLAY_VIEW, view, options);
             }
 
         });
 
         return Router;
+    }
+);
+define(
+    $d.project + '/base/AbstractView',
+    [
+        'backbone',
+        $d.project + '/Events',
+        'plugins'
+    ],
+    function(Backbone, Events){
+
+        var AbstractView = Backbone.View.extend({
+
+            events : function(events){
+                return events;
+            }
+
+        });
+
+        return AbstractView;
+    }
+);
+define(
+    $d.project + '/dashboard/Dashboard',
+    [
+        $d.project + '/base/AbstractView',
+        $d.project + '/Events'
+    ],
+    function(AbstractView, Events){
+
+        var Dashboard = AbstractView.extend({
+
+            initialize : function(options){
+                this.$el.html('<div>hello world!</div>');
+            }
+
+        });
+
+        return Dashboard;
     }
 );
