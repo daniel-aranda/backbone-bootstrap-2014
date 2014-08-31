@@ -143,14 +143,6 @@ module.exports = function(grunt){
                 options : {
                     spawn : false
                 }
-            },
-
-            jasmine : {
-                files : [
-                    '<%= jasmine.options.specs %>',
-                    '!**.grunt**'
-                ],
-                tasks: ['jasmine']
             }
 
         },
