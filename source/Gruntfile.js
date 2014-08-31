@@ -68,7 +68,10 @@ module.exports = function(grunt){
 
         jshint : {
 
-            files: ['javascript/app/**/*.js']
+            files: [
+                'javascript/app/**/*.js',
+                '<%= jasmine.options.specs %>'
+            ]
 
         },
 
@@ -140,6 +143,14 @@ module.exports = function(grunt){
                 options : {
                     spawn : false
                 }
+            },
+
+            jasmine : {
+                files : [
+                    '<%= jasmine.options.specs %>',
+                    '!**.grunt**'
+                ],
+                tasks: ['jasmine']
             }
 
         },
