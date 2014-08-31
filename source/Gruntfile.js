@@ -1,6 +1,6 @@
 /**
  *
- * Firebase Security Rules UI
+ * Backbone Bootstrap 2014
  *
  * ::::::::::::::::::::::::::::
  *
