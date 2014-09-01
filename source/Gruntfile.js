@@ -69,7 +69,7 @@ module.exports = function(grunt){
                 src: [
                     'scss/**/*.scss'
                 ],
-                dest : 'scss/concat.scss'
+                dest : 'concat.scss'
             }
 
         },
@@ -86,7 +86,7 @@ module.exports = function(grunt){
         sass : {
 
             dist : {
-                src : 'scss/concat.scss',
+                src : '<%= concat.scss.dest %>',
                 dest : '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css'
             }
 
