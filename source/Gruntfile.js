@@ -45,6 +45,7 @@ module.exports = function(grunt){
             js: {
                 src: [
                     'javascript/app/core.js',
+                    'javascript/app/components/templates.js',
                     'javascript/app/**/*.js'
                 ],
                 dest: '<%= release_path %>js/modules/<%= pkg.name %>_<%= pkg.version %>.js'
@@ -62,6 +63,13 @@ module.exports = function(grunt){
                     'html/**/*.html'
                 ],
                 dest: '<%= release_path %>templates/<%= pkg.name %>_<%= pkg.version %>.html'
+            },
+
+            scss : {
+                src: [
+                    'scss/**/*.scss'
+                ],
+                dest : 'scss/concat.scss'
             }
 
         },
@@ -77,11 +85,9 @@ module.exports = function(grunt){
 
         sass : {
 
-            module :{
-
-                files : {
-                    '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css' : 'scss/**/*.scss'
-                }
+            dist : {
+                src : 'scss/concat.scss',
+                dest : '<%= release_path %>css/<%= pkg.name %>_<%= pkg.version %>.css'
             }
 
         },
@@ -131,7 +137,7 @@ module.exports = function(grunt){
 
             scss : {
                 files : ['scss/**/*.scss'],
-                tasks: ['sass'],
+                tasks: ['concat:scss', 'sass'],
                 options : {
                     spawn : false
                 }
