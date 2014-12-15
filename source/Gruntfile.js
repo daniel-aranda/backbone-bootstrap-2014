@@ -160,7 +160,7 @@ module.exports = function(grunt){
             ],
 
             options : {
-                specs : 'tests/**/*.js',
+                specs : 'tests/app/**/*.js',
                 template: require('grunt-template-jasmine-requirejs'),
                 templateOptions:{
                     requireConfig: {
