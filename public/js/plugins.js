@@ -68,7 +68,7 @@ $d.tpl = {
             }
             if( templateDom.length > 1 ){
                 console.log(arguments);
-                console.log('You defined more than one template with the same name. Please make sure each template has a unique name.');
+                console.log('You defined more than one template with the same name. Please make sure each template has an unique name.');
             }
             try{
                 this.compiledTemplates[name] = _.template( templateDom.html() );
